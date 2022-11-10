@@ -7,5 +7,6 @@ public class Hi {
 		System.out.println("hi 아임 민혁!!!!!!");
 		System.out.println("hi 아임 민우!!!!!!");
 		System.out.println("hi 아임 유식!!!!!!");
+		System.out.println("프로그래밍 기초 프로젝트");
 	}
 }
