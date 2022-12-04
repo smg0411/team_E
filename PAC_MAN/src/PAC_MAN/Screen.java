@@ -19,20 +19,18 @@ public class Screen extends Canvas implements KeyListener {
 	public Screen() {
 		ImageIcon icon = new ImageIcon("resource/PM.jpg");
 		this.PMImg = icon.getImage();
-		
 	}
-	
+
 	private void initBuffer() {
 		this.dim = getSize();
 		this.offScreen = createImage(dim.width, dim.height);
 		this.bufferGraphics = this.offScreen.getGraphics();
 	}
-	
+
 	@Override
 	public void paint(Graphics g) {
 		g.drawImage(PMImg, 0, 0, this);
 	}
-	
 	
 	@Override
 	public void update(Graphics g) {
