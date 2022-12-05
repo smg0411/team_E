@@ -26,7 +26,7 @@ public class MainFrame extends JFrame implements ComponentListener {
 		setTitle("PAC MAN!");                     // 텍스트 타이틀 
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setResizable(false);                      //창의 크기를 변경하지 못하게 
+		setResizable(false);                      //창의 크기를 변경하지 못하게 s
 		setLocationRelativeTo(null);              //창이 가운데 나오게
 		setVisible(true); 						// 화면 보이게 설정
 		
