@@ -30,6 +30,7 @@ public class MainFrame extends JFrame implements ComponentListener {
 		setLocationRelativeTo(null);              //창이 가운데 나오게
 		setVisible(true); 						// 화면 보이게 설정
 		
+		
 		bgplay();
 	}
 	
