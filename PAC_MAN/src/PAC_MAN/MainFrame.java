@@ -14,6 +14,8 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -34,7 +36,13 @@ public class MainFrame extends JFrame implements ComponentListener {
 	
 	public MainFrame() {
 		this.screen = new Screen();
-
+		Timer time = new Timer();
+		TimerTask timetask = new TimerTask() {
+			public void run() {
+				bgplay1();
+			}
+		};
+		
 		add(screen);
 		
 		setSize(1000, 700);                       // 화면 크기 설정
@@ -94,7 +102,8 @@ public class MainFrame extends JFrame implements ComponentListener {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+				new Control();
+				setVisible(false);
 			}
 			
 			@Override
@@ -115,6 +124,7 @@ public class MainFrame extends JFrame implements ComponentListener {
 		
 		setVisible(true);
 		bgplay();
+		time.schedule(timetask, 6000);
 	}
 	
 	public void bgplay() {
@@ -128,6 +138,28 @@ public class MainFrame extends JFrame implements ComponentListener {
         }
         
         final Player player = jlPlayer;
+        new Thread() {
+            public void run() {
+                try {
+                	player.play();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        }.start();
+    }
+	
+	public void bgplay1() {
+		Player jlPlayer2 = null;
+        try {
+            FileInputStream fileInputStream1 = new FileInputStream("resource/PacMan20.mp3");
+            BufferedInputStream bufferedInputStream1 = new BufferedInputStream(fileInputStream1);
+            jlPlayer2 = new Player(bufferedInputStream1);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
+        final Player player = jlPlayer2;
         new Thread() {
             public void run() {
                 try {
