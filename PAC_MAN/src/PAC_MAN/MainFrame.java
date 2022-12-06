@@ -12,7 +12,7 @@ public class MainFrame extends JFrame implements ComponentListener {
 
 	
 	public MainFrame() {
-		setSize(1000, 700);
+		setSize(1000, 650);
 		setTitle("PAC MAN!");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

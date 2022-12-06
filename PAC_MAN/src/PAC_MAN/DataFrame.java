@@ -7,4 +7,6 @@ public class DataFrame {
 	public int Score;
 	public int Coin;
 	public String Function_Item;
+	
+	
 }
