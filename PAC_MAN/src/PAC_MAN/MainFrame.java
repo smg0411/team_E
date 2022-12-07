@@ -1,13 +1,10 @@
 package PAC_MAN;
 
-import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Image;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -42,9 +39,7 @@ public class MainFrame extends JFrame implements ComponentListener {
 				bgplay1();
 			}
 		};
-		
 		add(screen);
-		
 		setSize(1000, 700);                       // 화면 크기 설정
 		setTitle("PAC MAN!");                     // 텍스트 타이틀 
 		getContentPane().setLayout(null);
@@ -57,7 +52,7 @@ public class MainFrame extends JFrame implements ComponentListener {
 				start1.getImage().getScaledInstance(300, 75, Image.SCALE_SMOOTH));
 		control1 = new ImageIcon(
 				control1.getImage().getScaledInstance(280, 70, Image.SCALE_SMOOTH));
-		
+
 		JButton PACMANButton = new JButton(PACMAN);
 		PACMANButton.setBounds(110, 20, 780, 150);
 		PACMANButton.setBorderPainted(false);
@@ -74,7 +69,7 @@ public class MainFrame extends JFrame implements ComponentListener {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+				new Map();
 			}
 			
 			@Override
@@ -103,7 +98,7 @@ public class MainFrame extends JFrame implements ComponentListener {
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
 				new Control();
-				setVisible(false);
+				dispose();
 			}
 			
 			@Override
@@ -121,10 +116,9 @@ public class MainFrame extends JFrame implements ComponentListener {
 			}
 		});
 		add(controlButton);
-		
-		setVisible(true);
 		bgplay();
 		time.schedule(timetask, 6000);
+		setVisible(true);
 	}
 	
 	public void bgplay() {
@@ -155,6 +149,7 @@ public class MainFrame extends JFrame implements ComponentListener {
             FileInputStream fileInputStream1 = new FileInputStream("resource/PacMan20.mp3");
             BufferedInputStream bufferedInputStream1 = new BufferedInputStream(fileInputStream1);
             jlPlayer2 = new Player(bufferedInputStream1);
+            
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

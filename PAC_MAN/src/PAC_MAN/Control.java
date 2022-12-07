@@ -1,34 +1,29 @@
 package PAC_MAN;
 
-import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Image;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JFrame;
 
-public class Control extends JFrame implements ComponentListener {
+public class Control extends JFrame implements MouseListener {
 	private ImageIcon me = new ImageIcon("resource/me.png");
 	private ImageIcon cookie = new ImageIcon("resource/cookie.jpg");
+	private ImageIcon cookies = new ImageIcon("resource/cookies.png");
 	private ImageIcon ghost = new ImageIcon("resource/ghost.png");
 	private ImageIcon powercookie = new ImageIcon("resource/powercookie.png");
+	private ImageIcon powercookies = new ImageIcon("resource/powercookies.png");
 	private ImageIcon PACMAN = new ImageIcon("resource/PACMAN.jpg");
+	MainFrame mainframe;
 	
 	public Control() {
+		
 		setSize(1000, 700);                       // 화면 크기 설정
 		setTitle("PAC MAN!");                     // 텍스트 타이틀 
 		getContentPane().setLayout(null);
@@ -41,10 +36,14 @@ public class Control extends JFrame implements ComponentListener {
 				me.getImage().getScaledInstance(150, 80, Image.SCALE_SMOOTH));
 		cookie = new ImageIcon(
 				cookie.getImage().getScaledInstance(290, 100, Image.SCALE_SMOOTH));
+		cookies = new ImageIcon(
+				cookies.getImage().getScaledInstance(120, 85, Image.SCALE_SMOOTH));
 		ghost = new ImageIcon(
 				ghost.getImage().getScaledInstance(280, 130, Image.SCALE_SMOOTH));
 		powercookie = new ImageIcon(
 				powercookie.getImage().getScaledInstance(270, 130, Image.SCALE_SMOOTH));
+		powercookies = new ImageIcon(
+				powercookies.getImage().getScaledInstance(70, 60, Image.SCALE_SMOOTH));
 		
 		JButton PACMANButton = new JButton(PACMAN);
 		PACMANButton.setBounds(110, 20, 780, 150);
@@ -59,6 +58,13 @@ public class Control extends JFrame implements ComponentListener {
 		pacmanButton.setContentAreaFilled(false);
 		pacmanButton.setFocusPainted(false);
 		add(pacmanButton);
+		
+		JButton cookiesButton = new JButton(cookies);
+		cookiesButton.setBounds(470, 200, 120, 85);
+		cookiesButton.setBorderPainted(false);
+		cookiesButton.setContentAreaFilled(false);
+		cookiesButton.setFocusPainted(false);
+		add(cookiesButton);
 		
 		JButton cookieButton = new JButton(cookie);
 		cookieButton.setBounds(600, 190, 290, 100);
@@ -81,31 +87,58 @@ public class Control extends JFrame implements ComponentListener {
 		powercookieButton.setFocusPainted(false);
 		add(powercookieButton);
 		
+		JButton powercookiesButton = new JButton(powercookies);
+		powercookiesButton.setBounds(500, 370, 70, 60);
+		powercookiesButton.setBorderPainted(false);
+		powercookiesButton.setContentAreaFilled(false);
+		powercookiesButton.setFocusPainted(false);
+		add(powercookiesButton);
+		
+		JButton BackButton = new JButton("Back");
+		BackButton.setBounds(460, 540, 100, 100);
+		BackButton.setBorderPainted(false);
+		BackButton.setContentAreaFilled(false);
+		BackButton.setFocusPainted(false);
+		BackButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				new MainFrame();
+				dispose();
+			}
+		});
+		add(BackButton);
+		
 		setVisible(true);
 	}
-	
+
 	@Override
-	public void componentResized(ComponentEvent e) {
+	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void componentMoved(ComponentEvent e) {
+	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void componentShown(ComponentEvent e) {
+	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void componentHidden(ComponentEvent e) {
+	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }
