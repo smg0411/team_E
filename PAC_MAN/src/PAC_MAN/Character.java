@@ -20,6 +20,5 @@ public abstract class Character  {
 	
 	//아이템 먹기
 	abstract void pick_items();
-
 	
 }
