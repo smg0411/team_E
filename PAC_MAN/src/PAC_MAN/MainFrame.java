@@ -27,18 +27,16 @@ public class MainFrame extends JFrame implements ComponentListener {
 	private Screen screen;
 	private ImageIcon start = new ImageIcon("resource/start.jpg");
 	private ImageIcon control = new ImageIcon("resource/control.jpg");
+	private ImageIcon Music = new ImageIcon("resource/music.jpg");
 	private ImageIcon start1 = new ImageIcon("resource/start.jpg");
 	private ImageIcon control1 = new ImageIcon("resource/control.jpg");
 	private ImageIcon PACMAN = new ImageIcon("resource/PACMAN.jpg");
+	private ImageIcon Music1 = new ImageIcon("resource/music1.jpg");
+	private Thread thread = new Thread();
 	
 	public MainFrame() {
 		this.screen = new Screen();
 		Timer time = new Timer();
-		TimerTask timetask = new TimerTask() {
-			public void run() {
-				bgplay1();
-			}
-		};
 		add(screen);
 		setSize(1000, 700);                       // 화면 크기 설정
 		setTitle("PAC MAN!");                     // 텍스트 타이틀 
@@ -52,6 +50,10 @@ public class MainFrame extends JFrame implements ComponentListener {
 				start1.getImage().getScaledInstance(300, 75, Image.SCALE_SMOOTH));
 		control1 = new ImageIcon(
 				control1.getImage().getScaledInstance(280, 70, Image.SCALE_SMOOTH));
+		Music1 = new ImageIcon(
+				Music1.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH));
+		Music = new ImageIcon(
+				Music.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
 
 		JButton PACMANButton = new JButton(PACMAN);
 		PACMANButton.setBounds(110, 20, 780, 150);
@@ -70,6 +72,7 @@ public class MainFrame extends JFrame implements ComponentListener {
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
 				new Map();
+				dispose();
 			}
 			
 			@Override
@@ -116,12 +119,44 @@ public class MainFrame extends JFrame implements ComponentListener {
 			}
 		});
 		add(controlButton);
-		bgplay();
-		time.schedule(timetask, 6000);
+		
+		JButton musicButton = new JButton(Music);
+		musicButton.setBounds(20, 560, 70, 70);
+		musicButton.setBorderPainted(false);
+		musicButton.setContentAreaFilled(false);
+		musicButton.setFocusPainted(false);
+		musicButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				oldplay = bgplay();
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+
+				TimerTask timetask = new TimerTask() {
+					public void run() {
+						bgplay1(oldplay);
+					}
+				};
+				time.schedule(timetask, 6000);
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				musicButton.setIcon(Music1);
+				musicButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				musicButton.setIcon(Music);
+				musicButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+			}
+		});
+		add(musicButton);
 		setVisible(true);
 	}
-	
-	public void bgplay() {
+	Player oldplay;
+	public Player bgplay() {
 		Player jlPlayer = null;
         try {
             FileInputStream fileInputStream = new FileInputStream("resource/PacMan.mp3");
@@ -141,9 +176,11 @@ public class MainFrame extends JFrame implements ComponentListener {
                 }
             }
         }.start();
+        return jlPlayer;
     }
 	
-	public void bgplay1() {
+	public void bgplay1(Player oldplay) {
+		oldplay.close();
 		Player jlPlayer2 = null;
         try {
             FileInputStream fileInputStream1 = new FileInputStream("resource/PacMan20.mp3");

@@ -13,10 +13,12 @@ public class Screen extends Canvas implements KeyListener {
 	private Graphics bufferGraphics;
 	private Image offScreen;
 	private Dimension dim;
+	private Image PMImg;
 	private int stage = 1;
 
 	public Screen() {
-		
+		ImageIcon icon = new ImageIcon("resource/PM.jpg");
+		this.PMImg = icon.getImage();
 	}
 
 	private void initBuffer() {
@@ -27,7 +29,7 @@ public class Screen extends Canvas implements KeyListener {
 
 	@Override
 	public void paint(Graphics g) {
-		
+		g.drawImage(PMImg, 0, 0, this);
 	}
 	
 	@Override
