@@ -14,11 +14,11 @@ public class Screen extends Canvas implements KeyListener {
 	private Image offScreen;
 	private Dimension dim;
 	private Image PMImg;
+	private Map map;
 	private int stage = 1;
 
 	public Screen() {
-		ImageIcon icon = new ImageIcon("resource/PM.jpg");
-		this.PMImg = icon.getImage();
+		Map map = new Map("/PAC_MAN/resource/MapDesign.png");
 	}
 
 	private void initBuffer() {
@@ -29,7 +29,7 @@ public class Screen extends Canvas implements KeyListener {
 
 	@Override
 	public void paint(Graphics g) {
-		g.drawImage(PMImg, 0, 0, this);
+		map.paint(g);
 	}
 	
 	@Override
