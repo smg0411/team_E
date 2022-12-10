@@ -71,7 +71,7 @@ public class MainFrame extends JFrame implements ComponentListener {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-				new Map();
+				
 				dispose();
 			}
 			
